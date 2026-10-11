@@ -1,0 +1,59 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Draft notes (not part of the code release)
+context/
+
+# Local data dumps that are not source
+src/GSL_openpose_data/
+scripts/_patch_full_paper*.py
+
+# Data (large, not committed)
+SignTalk-GH/
+GSL_openpose_data/
+data/raw_videos/*
+!data/raw_videos/.gitkeep
+data/external/*
+!data/external/.gitkeep
+data/landmarks/*
+!data/landmarks/.gitkeep
+data/windows/*
+!data/windows/.gitkeep
+data/splits/*
+!data/splits/.gitkeep
+
+# Models / outputs
+checkpoints/*
+!checkpoints/.gitkeep
+mp_models/*
+!mp_models/.gitkeep
+results/*
+!results/.gitkeep
+!results/paper1_access_revision/
+results/paper1_access_revision/*
+!results/paper1_access_revision/protocol.json
+!results/paper1_access_revision/tables/
+!results/paper1_access_revision/tables/**
+*.pt
+*.pth
+*.ckpt
+*.task
+
+# Secrets
+.env
+kaggle.json
+.kaggle/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+wandb/

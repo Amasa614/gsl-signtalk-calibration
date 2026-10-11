@@ -1,0 +1,67 @@
+{
+  "protocol": "paper1_access_revision_v1",
+  "task": "26-way category recognition",
+  "questions": [
+    "Q1 zero-shot transfer",
+    "Q2 calibration methods",
+    "Q3 matched candidates"
+  ],
+  "source_bases": "existing scratch RQ4 k=4 checkpoints; not retrained",
+  "main_budgets": [
+    1,
+    5,
+    20
+  ],
+  "n_draws": 5,
+  "adaptation_seeds": [
+    42,
+    43,
+    44
+  ],
+  "n_calibration_selections": 75,
+  "seed_formulas": {
+    "calib_test_split": "42 + 100 * target_signer",
+    "five_draw_sample": "42 + 1000 * target + 17 * n + 997 * draw",
+    "v2_single_draw_sample": "42 + 1000 * target + n",
+    "note": "Video IDs were not stored in historical JSONs. Selections are reconstructed from windows.csv first-appearance order plus the original seed formulas, then accepted only if clip/window/category counts match the historical records."
+  },
+  "prototype_embedding": {
+    "window_embed": "mean-pool Transformer hidden states over 64 frames (eval mode)",
+    "clip_support": "mean of window embeddings that share video_id, then class-mean, then L2",
+    "test_score": "L2-normalize each test *window* embedding, cosine vs class prototypes, then mean-pool window logits per video_id",
+    "missing_class": "zero prototype; logits set to -1e9"
+  },
+  "windows_csv_sha256": "65aaedbcb51c90c55a42583f5278415a25252ac50d873cd1415609e2dee5843d",
+  "label_map_sha256": "8ccd44139e1064043be2394dc6512d2b6bc9cb7a2a6b13b86aef799513ce018e",
+  "label_map": {
+    "Admin and billing": 0,
+    "Cardiovascular health": 1,
+    "Common symptons": 2,
+    "Dental Interactions": 3,
+    "Dermatology and skin conditions": 4,
+    "Doctor-Patient interactions": 5,
+    "ENT (Ear, Nose, and Throat) Interactions": 6,
+    "Emotional Phrase": 7,
+    "General hospital interactions": 8,
+    "Geriatric Interactions": 9,
+    "Human Body Parts": 10,
+    "Infectious disease and prevention": 11,
+    "Medical emergencies": 12,
+    "Medical history": 13,
+    "Mental health interactions": 14,
+    "Nursing/Patient care": 15,
+    "Nutrition and Diet": 16,
+    "Ophthalmology & Vision Care": 17,
+    "Orthopedic & Physical Therapy": 18,
+    "Pediatric interaction": 19,
+    "Pharmacy interactions": 20,
+    "Prescriptions": 21,
+    "Questions from patients": 22,
+    "Respiratory & Pulmonary Care": 23,
+    "Travel Medicine": 24,
+    "Treatment and diagnosis": 25
+  },
+  "calib_frac": 0.8,
+  "base_seed": 42,
+  "git_note": "Repository has no commits on master; outputs are isolated under results/paper1_access_revision/ instead of a git branch snapshot."
+}
